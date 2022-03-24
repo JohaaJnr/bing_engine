@@ -11,7 +11,7 @@ Route.post('/search', (req,res)=>{
 
   (async () => {
     const query = req.body.searchtxt
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     await page.goto(`https://www.bing.com/search?q=${query}`, { waitUntil: 'networkidle0' });
     
